@@ -10,6 +10,7 @@
   loop:
     - bash
     - bash-completion
+    - bind9-dnsutils  # provides dig
     - clang  # Front-end for the LLVM compiler
     - cmake  # Needed for installing some rust crates
     - dconf-cli
