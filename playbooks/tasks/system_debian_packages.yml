@@ -8,6 +8,7 @@
   register: debian_install_packages
   until: debian_install_packages is succeeded
   loop:
+    - apt-file  # CLI for searching which package provides a file
     - bash
     - bash-completion
     - bind9-dnsutils  # provides dig
