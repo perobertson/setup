@@ -8,6 +8,9 @@
   loop:
     - key: /org/cinnamon/desktop/interface/clock-show-seconds
       value: 'true'
+    # conflicts with pressing alt+click in full screen apps
+    - key: /org/cinnamon/desktop/wm/preferences/mouse-button-modifier
+      value: "''" # defaults to alt
     - key: /org/cinnamon/enable-indicators
       value: 'true'
     - key: /org/cinnamon/panels-enabled
@@ -16,6 +19,9 @@
       value: ['1:26', '2:26']
     - key: /org/gnome/desktop/interface/monospace-font-name
       value: "'Inconsolata 14'"
+    # conflicts with pressing alt+click in full screen apps
+    - key: /org/gnome/desktop/wm/preferences/mouse-button-modifier
+      value: "''" # defaults to alt
     - key: /org/nemo/preferences/date-format
       value: "'iso'"
     - key: /org/nemo/preferences/default-folder-viewer
