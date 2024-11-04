@@ -6,7 +6,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 sudo dnf -y install \
     pipx \
     python3-devel \
-    python3-dnf \
     python3-libdnf5 \
     python3-pip
 
