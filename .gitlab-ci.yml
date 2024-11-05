@@ -101,12 +101,6 @@ build:centos:stream9:
   script:
     - ./.gitlab/build_image.sh centos stream9
 
-build:fedora:40:
-  extends:
-    - .build_img
-  script:
-    - ./.gitlab/build_image.sh fedora 40
-
 build:fedora:41:
   extends:
     - .build_img
@@ -168,18 +162,6 @@ test:centos:stream9:
   image: ${CI_REGISTRY_IMAGE}/centos:stream9-${CI_COMMIT_REF_SLUG}
   needs:
     - job: build:centos:stream9
-      artifacts: false
-    - job: lint:ansible
-      artifacts: false
-
-test:fedora:40:
-  # EOL: 2025-05-13
-  extends:
-    - .test
-    - .rules_redhat
-  image: ${CI_REGISTRY_IMAGE}/fedora:40-${CI_COMMIT_REF_SLUG}
-  needs:
-    - job: build:fedora:40
       artifacts: false
     - job: lint:ansible
       artifacts: false
