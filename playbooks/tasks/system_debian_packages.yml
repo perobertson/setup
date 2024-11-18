@@ -1,4 +1,40 @@
 ---
+- name: Debian(WSL) - Remove packages
+  ansible.builtin.apt:
+    pkg: "{{ item }}"
+    state: absent
+  loop:
+    # ssh.exe needs to be used instead of ssh for integration with 1Password
+    - openssh-client
+    # browser on the host needs to be used for tools like granted.dev
+    - firefox
+  when: running_in_wsl
+
+- name: Debian(WSL) - Link ssh to ssh.exe
+  ansible.builtin.file:
+    # 1Password integrates with the windows version of ssh
+    src: /mnt/c/WINDOWS/System32/OpenSSH/ssh.exe
+    dest: /usr/local/bin/ssh
+    owner: root
+    group: root
+    state: link
+    force: true # ssh.exe may not yet be installed
+    follow: false # do not modify src permissions
+  when: running_in_wsl
+
+- name: Debian(WSL) - Link firefox to firefox.exe
+  ansible.builtin.file:
+    # Tools like granted.dev require a browser and will open firefox
+    # These browsers need to be on the host to integrate with tools like Okta
+    src: /mnt/c/Program Files/Mozilla Firefox/firefox.exe
+    dest: /usr/local/bin/firefox
+    owner: root
+    group: root
+    state: link
+    force: true # firefox.exe may not yet be installed
+    follow: false # do not modify src permissions
+  when: running_in_wsl
+
 - name: Debian - Install packages
   ansible.builtin.apt:
     pkg: "{{ item }}"
