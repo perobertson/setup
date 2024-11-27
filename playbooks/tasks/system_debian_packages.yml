@@ -10,6 +10,18 @@
     - firefox
   when: running_in_wsl
 
+- name: Debian(WSL) - Link ssh to sftp.exe
+  ansible.builtin.file:
+    # 1Password integrates with the windows version of sftp
+    src: /mnt/c/WINDOWS/System32/OpenSSH/sftp.exe
+    dest: /usr/local/bin/sftp
+    owner: root
+    group: root
+    state: link
+    force: true # sftp.exe may not yet be installed
+    follow: false # do not modify src permissions
+  when: running_in_wsl
+
 - name: Debian(WSL) - Link ssh to ssh.exe
   ansible.builtin.file:
     # 1Password integrates with the windows version of ssh
