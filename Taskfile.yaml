@@ -5,7 +5,7 @@ version: "3"
 
 includes:
   ans:
-    taskfile: ./AnsibleTasks.yaml
+    taskfile: ./taskfiles/ansible.yaml
     dir: playbooks
 
 tasks:
