@@ -71,6 +71,7 @@
     - gitk
     - htop
     - jq
+    - language-pack-en # English language support
     - mold  # Faster linker for compiling
     - nodejs
     - npm
@@ -116,6 +117,12 @@
   loop:
     - https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.deb
   failed_when: false
+
+- name: Ensure locale is set
+  ansible.builtin.lineinfile:
+    path: /etc/default/locale
+    regexp: '^LANG='
+    line: LANG=en_CA.UTF-8
 
 ### --- Distro specific ---
 
