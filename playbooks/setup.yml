@@ -4,7 +4,6 @@
   vars:
     ansible_connection: local
     ansible_python_interpreter: "{{ ansible_playbook_python }}"
-    aws_vault_version: 7.2.0
     code_path: "{{ lookup('ansible.builtin.env', 'CODE_PATH', default='~/workspace') }}"
     dive_version: 0.12.0
     home: "{{ lookup('ansible.builtin.env','HOME', default='~') }}"
