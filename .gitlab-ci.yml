@@ -112,6 +112,12 @@ build:fedora:42:
     - .build_img
   script:
     - ./.gitlab/build_image.sh fedora 42
+
+build:fedora:43:
+  extends:
+    - .build_img
+  script:
+    - ./.gitlab/build_image.sh fedora 43
   # unreleased
   when: manual
   allow_failure: true
@@ -186,6 +192,18 @@ test:fedora:42:
   image: ${CI_REGISTRY_IMAGE}/fedora:42-${CI_COMMIT_REF_SLUG}
   needs:
     - job: build:fedora:42
+      artifacts: false
+    - job: lint:ansible
+      artifacts: false
+
+test:fedora:43:
+  # EOL: ~2026-12-02
+  extends:
+    - .test
+    - .rules_redhat
+  image: ${CI_REGISTRY_IMAGE}/fedora:43-${CI_COMMIT_REF_SLUG}
+  needs:
+    - job: build:fedora:43
       artifacts: false
     - job: lint:ansible
       artifacts: false
