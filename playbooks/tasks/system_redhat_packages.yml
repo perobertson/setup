@@ -53,7 +53,6 @@
     - curl
     - dconf
     - dnf-automatic
-    - ffmpeg-free  # Improves video playback
     - flatpak
     - gcc
     - gcc-c++
@@ -122,6 +121,7 @@
     - dconf-editor
     - dejavu-sans-fonts
     - dkms
+    - ffmpeg-free  # Improves video playback, conflicts with ffmpeg
     - fuse-sshfs
     - go-task  # CLI tool for taskfiles
     - google-noto-sans-fonts
