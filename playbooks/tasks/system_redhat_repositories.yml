@@ -78,11 +78,13 @@
   when: rpm_key_warp.changed
   changed_when: false
 
+# They list the signing key here
+# https://zoom.us/download?os=linux
 - name: RedHat - Import Zoom signing key
   ansible.builtin.rpm_key:
     state: present
-    key: https://zoom.us/linux/download/pubkey?version=5-12-6
-    fingerprint: 59C86188E22ABB19BD5540477B04A1B8DD79B481
+    key: https://zoom.us/linux/download/pubkey?version=6-3-10
+    fingerprint: AE446BAB33EA9862AA29FC3DDDE0E6222047091F
   register: rpm_key_zoom
   # Zoom is an optional package and CentOS:stream9 does not like this key
   failed_when: false
