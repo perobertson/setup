@@ -88,10 +88,6 @@
       become: true
       ansible.builtin.import_tasks: tasks/system_packages.yml
 
-    - name: Rust
-      ansible.builtin.import_tasks: tasks/system_rust.yml
-      tags: [system, dev, rust]
-
     - name: Systemd - system
       ansible.builtin.import_tasks: tasks/system_systemd.yml
       tags: [system, systemd]
@@ -104,6 +100,9 @@
 
     ### --- Userspace ---
     # Install dotfiles first so CI can detect drift
+    - name: Rust
+      ansible.builtin.import_tasks: tasks/user_rust.yml
+      tags: [user, dev, rust]
     - name: User dotfiles
       ansible.builtin.import_tasks: tasks/user_dotfiles.yml
       tags: [user, dotfiles]
