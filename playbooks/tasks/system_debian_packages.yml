@@ -47,13 +47,6 @@
     follow: false # do not modify src permissions
   when: running_in_wsl
 
-# Need to upgrade vim-minimal first, otherwise there are conflicts
-- name: Debian - Update vim-minimal
-  ansible.builtin.apt:
-    name:
-      - vim-minimal
-    state: present
-
 # Install vim separately due to conflicts in upgrade / install
 - name: Debian - Update vim
   ansible.builtin.apt:
