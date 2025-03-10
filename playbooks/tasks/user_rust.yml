@@ -5,7 +5,7 @@
 - name: All - download rustup.sh
   ansible.builtin.get_url:
     url: https://sh.rustup.rs
-    dest: /home/{{ ansible_user }}/bin/rustup.sh
+    dest: /home/{{ ansible_user_id }}/bin/rustup.sh
     mode: '0775'
   retries: 3
   delay: 5
@@ -19,6 +19,6 @@
 
 - name: All - rustup update
   ansible.builtin.command:
-    cmd: /home/{{ ansible_user }}/bin/rustup update
+    cmd: /home/{{ ansible_user_id }}/bin/rustup update
   register: rustup_update_result
   changed_when: "'linux-gnu unchanged - rustc' not in rustup_update_result.stdout"
