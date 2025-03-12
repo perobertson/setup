@@ -19,6 +19,6 @@
 
 - name: All - rustup update
   ansible.builtin.command:
-    cmd: /home/{{ ansible_user_id }}/.local/bin/rustup update
+    cmd: /home/{{ ansible_user_id }}/.cargo/bin/rustup update
   register: rustup_update_result
   changed_when: "'linux-gnu unchanged - rustc' not in rustup_update_result.stdout"
