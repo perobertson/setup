@@ -46,9 +46,7 @@
     - bison
     - bzip2
     - bzip2-devel
-    - cargo  # Rust's package manager and build tool
     - clang  # Front-end for the LLVM compiler
-    - clippy  # Lints to catch common mistakes and improve your Rust code
     - cmake  # Needed for installing some rust crates
     - curl
     - dconf
@@ -78,12 +76,6 @@
     - python3-dbus
     - readline-devel
     - redhat-rpm-config
-    - rust
-    - rust-analyzer  # Rust Language Server for IDE integration
-    - rust-gdb  # GDB pretty printers for Rust
-    - rust-lldb  # LLDB pretty printers for Rust
-    - rust-src  # Rust systems programming language - source code
-    - rustfmt  # Tool to find and fix Rust formatting issues
     - samba-client
     - seahorse  # key management
     - setools-console
@@ -98,6 +90,17 @@
     - zlib-devel
     - zsh
     - zstd  # Zstandard - Fast real-time compression algorithm
+
+    # Use rustup.sh instead of installing these on the system.
+    # It allows for other toolchains to be installed in the future.
+    # - cargo  # Rust's package manager and build tool
+    # - clippy  # Lints to catch common mistakes and improve your Rust code
+    # - rust
+    # - rust-analyzer  # Rust Language Server for IDE integration
+    # - rust-gdb  # GDB pretty printers for Rust
+    # - rust-lldb  # LLDB pretty printers for Rust
+    # - rust-src  # Rust systems programming language - source code
+    # - rustfmt  # Tool to find and fix Rust formatting issues
 
 - name: RedHat - Install non WSL packages
   ansible.builtin.dnf:
