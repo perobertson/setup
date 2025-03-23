@@ -153,6 +153,7 @@
     state: present
     disable_gpg_check: true
   loop:
+    - https://anytype-release.fra1.cdn.digitaloceanspaces.com/anytype-{{ anytype_version }}.x86_64.rpm
     - https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.rpm
 
 ### --- Distro specific ---
