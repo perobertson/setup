@@ -110,6 +110,14 @@
   register: rpmfusion_nonfree_updates_repo
 
 # Install of dependencies is specific to the os family
+- name: RedHat - update anytype-yum-repo  # noqa latest
+  diff: false
+  ansible.builtin.git:
+    repo: https://gitlab.com/perobertson/anytype-yum-repo.git
+    dest: /opt/anytype-yum-repo
+  register: git_anytype_yum_repo
+
+# Install of dependencies is specific to the os family
 - name: RedHat - update tenv-yum-repo  # noqa latest
   diff: false
   ansible.builtin.git:

@@ -37,6 +37,51 @@
   register: rpmfusion_nonfree_install
   until: rpmfusion_nonfree_install is succeeded
 
+- name: Fedora - Install anytype updater dependencies
+  ansible.builtin.dnf:
+    name:
+      - createrepo_c
+      - curl
+      - grep
+      - jq
+      - rpm
+      - sort
+      - tr
+    state: present
+
+- name: Fedora - install anytype updater script
+  community.general.make:
+    chdir: /opt/anytype-yum-repo
+    target: install-script
+
+# Download the anytype packages and build a local yum repo
+- name: Fedora - run anytype updater
+  ansible.builtin.command: /usr/local/bin/anytype-yum-repo-update.bash
+  args:
+    creates: /var/lib/anytype-yum-repo/repodata/repomd.xml
+
+# Add the local yum repo config so dnf discovers anytype
+- name: Fedora - install anytype updater repo
+  community.general.make:
+    chdir: /opt/anytype-yum-repo
+    target: install-repo
+
+- name: Fedora - install anytype updater service
+  community.general.make:
+    chdir: /opt/anytype-yum-repo
+    target: install-service
+  when:
+    - stat_run_systemd.stat.exists
+    - stat_run_systemd.stat.isdir
+
+- name: Fedora - start anytype updater service
+  community.general.make:
+    chdir: /opt/anytype-yum-repo
+    target: start-service
+  when:
+    - stat_run_systemd.stat.exists
+    - stat_run_systemd.stat.isdir
+
 - name: Fedora - Install tenv updater dependencies
   ansible.builtin.dnf:
     name:
