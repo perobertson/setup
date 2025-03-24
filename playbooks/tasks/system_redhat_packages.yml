@@ -121,7 +121,6 @@
   register: redhat_install_optional_packages
   until: redhat_install_optional_packages is succeeded
   loop:
-    - anytype  # Documentation platform
     - dconf-editor
     - dejavu-sans-fonts
     - dkms
@@ -148,12 +147,13 @@
     - zoom
   failed_when: false
 
-- name: RedHat - Install unsigned remote packages
+- name: RedHat - Install unsigned packages
   ansible.builtin.dnf:
     name: "{{ item }}"
     state: present
     disable_gpg_check: true
   loop:
+    - anytype  # Documentation platform
     - https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.rpm
 
 ### --- Distro specific ---
