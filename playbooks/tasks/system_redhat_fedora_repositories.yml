@@ -40,13 +40,12 @@
 - name: Fedora - Install anytype updater dependencies
   ansible.builtin.dnf:
     name:
-      - coreutils  # provides: sort
+      - coreutils  # provides: sort, tr
       - createrepo_c
       - curl
       - grep
       - jq
       - rpm
-      - tr
     state: present
 
 - name: Fedora - install anytype updater script
