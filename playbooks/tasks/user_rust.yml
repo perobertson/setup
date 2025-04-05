@@ -1,0 +1,24 @@
+# Use rustup to install the latest stable version
+---
+# This is a shell script which is used for bootstrapping
+# Future updates use the binary
+- name: All - download rustup.sh
+  ansible.builtin.get_url:
+    url: https://sh.rustup.rs
+    dest: /home/{{ ansible_user_id }}/.local/bin/rustup.sh
+    mode: '0775'
+  retries: 3
+  delay: 5
+  register: download_rustup_sh
+  until: download_rustup_sh is succeeded
+
+- name: All - Setup rustup
+  ansible.builtin.command: /home/{{ ansible_user_id }}/.local/bin/rustup.sh -y -q --no-modify-path
+  register: rustup_result
+  changed_when: rustup_result.rc == 0
+
+- name: All - rustup update
+  ansible.builtin.command:
+    cmd: /home/{{ ansible_user_id }}/.cargo/bin/rustup update
+  register: rustup_update_result
+  changed_when: "'linux-gnu unchanged - rustc' not in rustup_update_result.stdout"

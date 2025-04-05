@@ -45,6 +45,7 @@
       - curl
       - grep
       - jq
+      - make
       - rpm
     state: present
 
