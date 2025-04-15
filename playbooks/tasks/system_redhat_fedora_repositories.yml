@@ -37,6 +37,24 @@
   register: rpmfusion_nonfree_install
   until: rpmfusion_nonfree_install is succeeded
 
+- name: Fedora - Import librewolf signing key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://repo.librewolf.net/pubkey.gpg
+    # https://librewolf.net/installation/fedora/
+    fingerprint: 662E3CDD6FE329002D0CA5BB40339DD82B12EF16
+
+- name: Fedora - Add librewolf repository
+  ansible.builtin.yum_repository:
+    file: librewolf
+    name: librewolf-stable
+    description: LibreWolf Software Repository
+    baseurl: https://repo.librewolf.net
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://repo.librewolf.net/pubkey.gpg
+    repo_gpgcheck: true
+
 - name: Fedora - Install anytype updater dependencies
   ansible.builtin.dnf:
     name:
