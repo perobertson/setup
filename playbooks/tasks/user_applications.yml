@@ -34,6 +34,4 @@
   tags: [systemd]
   ansible.builtin.command:
     cmd: cargo install --git https://gitlab.com/perobertson-tools/user-updates.git
-    creates: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local/bin/user-updates"
-  environment:
-    CARGO_INSTALL_ROOT: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local"
+    creates: "{{ lookup('ansible.builtin.env', 'HOME') }}/.cargo/bin/user-updates"

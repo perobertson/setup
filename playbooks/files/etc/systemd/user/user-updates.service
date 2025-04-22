@@ -5,9 +5,8 @@ After=default.target
 [Service]
 Type=simple
 ExecCondition=non-metered-connection.bash
-ExecStartPre=cargo install --git https://gitlab.com/perobertson-tools/user-updates.git
-Environment=CARGO_INSTALL_ROOT=%h/.local
-ExecStart=%h/.local/bin/user-updates
+ExecStartPre=%h/.cargo/bin/cargo install --git https://gitlab.com/perobertson-tools/user-updates.git
+ExecStart=%h/.cargo/bin/user-updates apply
 
 [Install]
 # https://www.freedesktop.org/software/systemd/man/systemd.special.html#default.target1
