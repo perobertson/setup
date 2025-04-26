@@ -1,0 +1,10 @@
+[Unit]
+Description=Run user-setup hourly
+
+[Timer]
+# Need to wait a few minutes for the binary to be available the first time
+OnBootSec=1min
+OnUnitActiveSec=1h
+
+[Install]
+WantedBy=timers.target

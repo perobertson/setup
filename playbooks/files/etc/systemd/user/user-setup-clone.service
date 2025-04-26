@@ -1,0 +1,16 @@
+[Unit]
+Description=Clone user-setup
+ConditionACPower=true
+ConditionPathIsDirectory=!%S/user-setup
+After=default.target
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%S
+ExecStart=git clone "https://gitlab.com/perobertson/user-setup.git"
+
+[Install]
+# https://www.freedesktop.org/software/systemd/man/systemd.special.html#default.target1
+# The main target for user sessions
+WantedBy=default.target

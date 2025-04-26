@@ -17,5 +17,11 @@
     dest: "{{ item }}"
     mode: '0644'
   loop:
+    - /etc/systemd/user/user-setup-clone.service
+    - /etc/systemd/user/user-setup-clone.timer
+    - /etc/systemd/user/user-setup-update.service
+    - /etc/systemd/user/user-setup-update.timer
+    - /etc/systemd/user/user-setup.service
+    - /etc/systemd/user/user-setup.timer
     - /etc/systemd/user/user-updates.service
     - /etc/systemd/user/user-updates.timer
