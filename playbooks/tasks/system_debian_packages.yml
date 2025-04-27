@@ -125,11 +125,32 @@
     - https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.deb
   failed_when: false
 
-- name: Ensure locale is set
+- name: Debian - Ensure locale is set
   ansible.builtin.lineinfile:
     path: /etc/default/locale
     regexp: '^LANG='
     line: LANG=en_CA.UTF-8
+
+- name: Debian - Download go-task.tar.gz
+  ansible.builtin.get_url:
+    url: https://github.com/go-task/task/releases/download/v3.43.2/task_linux_amd64.tar.gz
+    dest: /tmp/task_linux_amd64_v3.43.2.tar.gz
+    mode: '0400'
+
+- name: Debian - Extract go-task
+  ansible.builtin.unarchive:
+    src: /tmp/task_linux_amd64_v3.43.2.tar.gz
+    dest: /tmp/task-3.43.2
+    extra_opts:
+      - task
+
+- name: Debian - Install go-task
+  ansible.builtin.copy:
+    src: /tmp/task-3.43.2
+    dest: /usr/local/bin/go-task
+    owner: root
+    group: root
+    mode: '0755'
 
 ### --- Distro specific ---
 
