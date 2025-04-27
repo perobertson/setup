@@ -83,9 +83,6 @@
     - name: User dotfiles
       ansible.builtin.import_tasks: tasks/user_dotfiles.yml
       tags: [user, dotfiles]
-    - name: User applications
-      ansible.builtin.import_tasks: tasks/user_applications.yml
-      tags: [user, applications]
     - name: User UI
       ansible.builtin.import_tasks: tasks/user_ui.yml
       tags: [user, ui]
