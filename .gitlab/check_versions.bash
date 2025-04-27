@@ -20,7 +20,7 @@ flatpak --version
 gcc --version
 git --version
 gitui --version || echo 'gitui unavailable'
-go-task --version || echo 'go-task unavailable'
+go-task --version
 gzip --version
 jq --version
 make --version
