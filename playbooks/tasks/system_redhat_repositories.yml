@@ -89,26 +89,6 @@
   # Zoom is an optional package and CentOS:stream9 does not like this key
   failed_when: false
 
-- name: RedHat - check if rpmfusion-free.repo file exists
-  ansible.builtin.stat:
-    path: /etc/yum.repos.d/rpmfusion-free.repo
-  register: rpmfusion_free_repo
-
-- name: RedHat - check if rpmfusion-free-updates.repo file exists
-  ansible.builtin.stat:
-    path: /etc/yum.repos.d/rpmfusion-free-updates.repo
-  register: rpmfusion_free_updates_repo
-
-- name: RedHat - check if rpmfusion-nonfree.repo file exists
-  ansible.builtin.stat:
-    path: /etc/yum.repos.d/rpmfusion-nonfree.repo
-  register: rpmfusion_nonfree_repo
-
-- name: RedHat - check if rpmfusion-nonfree-updates.repo file exists
-  ansible.builtin.stat:
-    path: /etc/yum.repos.d/rpmfusion-nonfree-updates.repo
-  register: rpmfusion_nonfree_updates_repo
-
 # Install of dependencies is specific to the os family
 - name: RedHat - update anytype-yum-repo  # noqa latest
   diff: false

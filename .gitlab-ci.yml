@@ -93,6 +93,9 @@ build:linter:
       --context $CI_PROJECT_DIR
       --destination $CI_REGISTRY_IMAGE/linter:$CI_COMMIT_REF_SLUG
       --dockerfile $CI_PROJECT_DIR/.gitlab/linter.dockerfile
+  variables:
+    KUBERNETES_MEMORY_LIMIT: "4Gi"
+    KUBERNETES_MEMORY_REQUEST: "2Gi"
 
 build:centos:stream9:
   extends:

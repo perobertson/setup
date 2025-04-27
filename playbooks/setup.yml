@@ -16,26 +16,6 @@
         "9":
           key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9
           fingerprint: FF8AD1344597106ECE813B918A3872BF3228467C
-      rpmfusion_free_el:  # https://rpmfusion.org/keys
-        "8":
-          key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-el-8
-          fingerprint: 837935CD19E123AA7F8A8E69979F0C69158B3811
-        "9":
-          key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-el-9
-          fingerprint: EDC00FE7418C9DF7EF4991A47403EA33296458F3
-      rpmfusion_nonfree_el:  # https://rpmfusion.org/keys
-        "8":
-          key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-el-8
-          fingerprint: CF9FD59F61D6612146CDAC8E14B6792DBDDA8475
-        "9":
-          key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-el-9
-          fingerprint: BB24128A4BB3C3352C0B75A2E4174E6BAAB212EA
-      rpmfusion_free_fedora:  # https://rpmfusion.org/keys
-        key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
-        fingerprint: E9A491A3DE247814E7E067EAE06F8ECDD651FF2E
-      rpmfusion_nonfree_fedora:  # https://rpmfusion.org/keys
-        key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
-        fingerprint: 79BDB88F9BBF73910FD4095B6A2AF96194843C65
   tasks:
     - name: Debug info
       ansible.builtin.debug:

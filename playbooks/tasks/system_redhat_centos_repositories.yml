@@ -16,45 +16,6 @@
 - name: CentOS - rpm keys for Google
   ansible.builtin.import_tasks: system_redhat_rpm_keys_google.yml
 
-
-- name: CentOS - Import RPM-GPG-KEY-rpmfusion-free signing key
-  ansible.builtin.rpm_key:
-    state: present
-    key: "{{ signing_keys.rpmfusion_free_el[ansible_distribution_major_version].key }}"
-    fingerprint: "{{ signing_keys.rpmfusion_free_el[ansible_distribution_major_version].fingerprint }}"
-
-- name: CentOS - Add RPMFusion-free repository
-  ansible.builtin.dnf:
-    name:
-      - "https://download1.rpmfusion.org/free/el/rpmfusion-free-release-\
-        {{ ansible_distribution_major_version | int }}.noarch.rpm"
-    state: present
-  when:
-    - (not rpmfusion_free_repo.stat.exists) or (not rpmfusion_free_updates_repo.stat.exists)
-  retries: 3
-  delay: 5
-  register: rpmfusion_free_install
-  until: rpmfusion_free_install is succeeded
-
-- name: CentOS - Import RPM-GPG-KEY-rpmfusion-nonfree signing key
-  ansible.builtin.rpm_key:
-    state: present
-    key: "{{ signing_keys.rpmfusion_nonfree_el[ansible_distribution_major_version].key }}"
-    fingerprint: "{{ signing_keys.rpmfusion_nonfree_el[ansible_distribution_major_version].fingerprint }}"
-
-- name: CentOS - Add RPMFusion-nonfree repository
-  ansible.builtin.dnf:
-    name:
-      - "https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-\
-        {{ ansible_distribution_major_version | int }}.noarch.rpm"
-    state: present
-  when:
-    - (not rpmfusion_nonfree_repo.stat.exists) or (not rpmfusion_nonfree_updates_repo.stat.exists)
-  retries: 3
-  delay: 5
-  register: rpmfusion_nonfree_install
-  until: rpmfusion_nonfree_install is succeeded
-
 - name: CentOS - Install zoom updater dependencies - curl
   ansible.builtin.dnf:
     name:
