@@ -42,8 +42,8 @@
     state: present
   retries: 3
   delay: 5
-  register: redhat_install_optional_packages
-  until: redhat_install_optional_packages is succeeded
+  register: fedora_install_optional_packages
+  until: fedora_install_optional_packages is succeeded
   loop:
     - intel-media-driver # from rpmfusion-nonfree; for video acceleration
   failed_when: false
