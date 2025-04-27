@@ -21,7 +21,6 @@
     - google-noto-sans-vf-fonts
     - google-roboto-mono-fonts
     - hyperfine  # CLI benchmarking
-    - intel-media-driver
     - kubernetes-client  # kubectl
     - levien-inconsolata-fonts
     - mozilla-fira-fonts-common
@@ -36,3 +35,15 @@
 
     # TODO: move this to redhat when centos gets support
     - podman-compose  # emulate docker-compose
+
+- name: Fedora - Best effort to install optional packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  retries: 3
+  delay: 5
+  register: redhat_install_optional_packages
+  until: redhat_install_optional_packages is succeeded
+  loop:
+    - intel-media-driver # from rpmfusion-nonfree; for video acceleration
+  failed_when: false
