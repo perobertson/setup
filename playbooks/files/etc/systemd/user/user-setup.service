@@ -1,7 +1,6 @@
 [Unit]
 Description=Update user scripts and tools
 ConditionACPower=true
-ConditionFileIsExecutable=%h/.local/bin/go-task
 ConditionPathIsDirectory=%S/user-setup
 After=default.target
 After=network-online.target
@@ -10,7 +9,7 @@ After=network-online.target
 Type=simple
 WorkingDirectory=%S/user-setup
 Environment=PATH=%h/.cargo/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
-ExecStart=%h/.local/bin/go-task apply
+ExecStart=go-task apply
 
 [Install]
 # https://www.freedesktop.org/software/systemd/man/systemd.special.html#default.target1
