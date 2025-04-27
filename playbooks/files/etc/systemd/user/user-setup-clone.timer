@@ -1,0 +1,11 @@
+[Unit]
+Description=Run user-setup hourly
+
+[Timer]
+# Wait a few seconds for the network to finish connecting
+# This also lets the logs show up in the journal
+OnBootSec=15
+OnUnitActiveSec=1h
+
+[Install]
+WantedBy=timers.target

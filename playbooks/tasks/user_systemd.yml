@@ -18,6 +18,9 @@
     - stat_run_systemd.stat.exists
     - stat_run_systemd.stat.isdir
   loop:
+    - user-setup-clone.timer
+    - user-setup-update.timer
+    - user-setup.timer
     - user-updates.timer
 
 # Just the timer units should be started here
@@ -29,6 +32,9 @@
     daemon_reload: true
     scope: user
   loop:
+    - user-setup-clone.timer
+    - user-setup-update.timer
+    - user-setup.timer
     - user-updates.timer
   when:
     - stat_run_systemd.stat.exists
