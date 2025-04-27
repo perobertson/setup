@@ -135,18 +135,18 @@
   ansible.builtin.get_url:
     url: https://github.com/go-task/task/releases/download/v3.43.2/task_linux_amd64.tar.gz
     dest: /tmp/task_linux_amd64_v3.43.2.tar.gz
-    mode: '0400'
+    mode: '0644'
 
 - name: Debian - Extract go-task
   ansible.builtin.unarchive:
     src: /tmp/task_linux_amd64_v3.43.2.tar.gz
-    dest: /tmp/task-3.43.2
+    dest: /tmp
     extra_opts:
       - task
 
 - name: Debian - Install go-task
   ansible.builtin.copy:
-    src: /tmp/task-3.43.2
+    src: /tmp/task
     dest: /usr/local/bin/go-task
     owner: root
     group: root
