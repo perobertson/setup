@@ -20,7 +20,7 @@ flatpak --version
 gcc --version
 git --version
 gitui --version || echo 'gitui unavailable'
-go-task --version || echo 'go-task unavailable'
+go-task --version
 gzip --version
 jq --version
 make --version
@@ -45,12 +45,15 @@ zsh --version
 zstd --version
 # These commands do not have a version option or cause side effects
 command -v ansible
-command -v cargo
-command -v cargo-clippy
 command -v code
 command -v gitk
-command -v rust-gdb
-command -v rustc
-command -v rustdoc
-command -v rustfmt
-command -v rustup.sh
+
+# Use rustup.sh instead of installing these on the system.
+# It allows for other toolchains to be installed in the future.
+# command -v cargo
+# command -v cargo-clippy
+# command -v rust-gdb
+# command -v rustc
+# command -v rustdoc
+# command -v rustfmt
+# command -v rustup.sh

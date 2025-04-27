@@ -80,9 +80,6 @@
 
     ### --- Userspace ---
     # Install dotfiles first so CI can detect drift
-    - name: Rust
-      ansible.builtin.import_tasks: tasks/user_rust.yml
-      tags: [user, dev, rust]
     - name: User dotfiles
       ansible.builtin.import_tasks: tasks/user_dotfiles.yml
       tags: [user, dotfiles]
