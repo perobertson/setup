@@ -1,29 +1,4 @@
 ---
-- name: All - Check if user-updates settings exist
-  tags: [systemd]
-  ansible.builtin.stat:
-    path: "{{ config_dir }}/user-updates/settings.yml"
-  register: user_updates_settings
-
-- name: All - Create user-updates dirs
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-    mode: '0700'
-  when: not user_updates_settings.stat.exists
-  loop:
-    - "{{ config_dir }}"
-    - "{{ config_dir }}/user-updates"
-
-- name: All - Configure user-updates
-  diff: true
-  tags: [systemd]
-  ansible.builtin.copy:
-    src: "files/XDG_CONFIG_HOME/user-updates/settings.yml"
-    dest: "{{ config_dir }}/user-updates/settings.yml"
-    mode: '0600'
-  when: not user_updates_settings.stat.exists
-
 - name: All - Check if dotfiles exist
   ansible.builtin.stat:
     path: "{{ code_path }}/gitlab.com/perobertson/dotfiles"
