@@ -26,10 +26,6 @@ define build_image
 	$(CONTAINER) load -i dockerfiles/dist/$(1)/$(1)-$(2).tar
 endef
 
-dockerfiles/dist/centos/centos-stream9.tar: ./.gitlab/build_image.sh
-dockerfiles/dist/centos/centos-stream9.tar: dockerfiles/centos.dockerfile
-	$(call build_image,centos,stream9)
-
 dockerfiles/dist/fedora/fedora-41.tar: ./.gitlab/build_image.sh
 dockerfiles/dist/fedora/fedora-41.tar: dockerfiles/fedora.dockerfile
 	$(call build_image,fedora,41)
@@ -87,10 +83,6 @@ define test_os
 	$(CONTAINER) exec "perobertson-setup-$(1)-$(2)" su public --command="./.gitlab/verify_no_changes.sh"
 	$(CONTAINER) stop "perobertson-setup-$(1)-$(2)"
 endef
-
-.PHONY: test-centos-stream9
-test-centos-stream9: dockerfiles/dist/centos/centos-stream9.tar
-	$(call test_os,centos,stream9)
 
 .PHONY: test-fedora-41
 test-fedora-41: dockerfiles/dist/fedora/fedora-41.tar

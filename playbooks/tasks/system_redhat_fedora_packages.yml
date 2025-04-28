@@ -26,15 +26,13 @@
     - mozilla-fira-fonts-common
     - mozilla-fira-mono-fonts
     - mozilla-fira-sans-fonts
+    - podman-compose  # emulate docker-compose
     - python3-psutil
     - ShellCheck
     - sqlitebrowser
     - tenv  # OpenTofu version manager
     - texlive-montserrat
     - zoom
-
-    # TODO: move this to redhat when centos gets support
-    - podman-compose  # emulate docker-compose
 
 - name: Fedora - Best effort to install optional packages
   ansible.builtin.dnf:

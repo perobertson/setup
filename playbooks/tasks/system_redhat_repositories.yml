@@ -86,8 +86,6 @@
     key: https://zoom.us/linux/download/pubkey?version=6-3-10
     fingerprint: AE446BAB33EA9862AA29FC3DDDE0E6222047091F
   register: rpm_key_zoom
-  # Zoom is an optional package and CentOS:stream9 does not like this key
-  failed_when: false
 
 # Install of dependencies is specific to the os family
 - name: RedHat - update anytype-yum-repo  # noqa latest
@@ -114,10 +112,6 @@
   register: git_zoom_yum_repo
 
 ### --- Distro specific ---
-
-- name: CentOS Repositories
-  ansible.builtin.import_tasks: system_redhat_centos_repositories.yml
-  when: ansible_distribution == 'CentOS'
 
 - name: Fedora Repositories
   ansible.builtin.import_tasks: system_redhat_fedora_repositories.yml
