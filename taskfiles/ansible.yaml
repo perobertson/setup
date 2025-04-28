@@ -9,11 +9,6 @@ tasks:
     cmds:
       - ansible-playbook -v setup.yml --tags=debug {{.CLI_ARGS}}
 
-  flatpaks:
-    desc: Install flatpaks
-    cmds:
-      - ansible-playbook -v flatpaks.yml {{.CLI_ARGS}}
-
   setup:
     desc: Run the setup script
     cmds:

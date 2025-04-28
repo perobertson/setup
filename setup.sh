@@ -110,9 +110,5 @@ cd playbooks
 ansible-galaxy collection install -r config/collections.yml
 ansible-playbook -v setup.yml
 
-if [[ -n "${CI:-}" ]]; then
-    ansible-playbook -v flatpaks.yml
-fi
-
 echo ''
 echo 'Everything installed. Be sure to reboot at your earliest convenience'
