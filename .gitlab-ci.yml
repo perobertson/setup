@@ -1,4 +1,3 @@
-# CentOS EOL dates https://www.centos.org/centos-stream/
 # Fedora EOL dates https://fedorapeople.org/groups/schedule/
 # Ubuntu EOL dates https://wiki.ubuntu.com/Releases/
 ---
@@ -97,13 +96,6 @@ build:linter:
     KUBERNETES_MEMORY_LIMIT: "4Gi"
     KUBERNETES_MEMORY_REQUEST: "2Gi"
 
-build:centos:stream9:
-  extends:
-    - .build_img
-    - .rules_secondary_os
-  script:
-    - ./.gitlab/build_image.sh centos stream9
-
 build:fedora:41:
   extends:
     - .build_img
@@ -163,17 +155,6 @@ lint:ansible:
     - go-task ans:lint
     # Also check all other non ansible files
     - yamllint -f parsable .
-
-test:centos:stream9:
-  extends:
-    - .test
-    - .rules_secondary_os
-  image: ${CI_REGISTRY_IMAGE}/centos:stream9-${CI_COMMIT_REF_SLUG}
-  needs:
-    - job: build:centos:stream9
-      artifacts: false
-    - job: lint:ansible
-      artifacts: false
 
 test:fedora:41:
   # EOL: ~2025-10-22
