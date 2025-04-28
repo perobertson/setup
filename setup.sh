@@ -20,8 +20,6 @@ shopt -s nullglob
 shopt -s globstar
 
 # Set the PATH here since this may be the first time the script is run
-# The install of the dotfiles will make it permanent
-# cargo/bin is needed for distros that need to use rustup.sh
 PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:${HOME}/bin:$PATH"
 
 # Set the code path if its not set to where all code will be cloned into

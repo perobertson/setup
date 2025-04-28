@@ -79,10 +79,6 @@
       ansible.builtin.import_tasks: tasks/system_auto_updates.yml
 
     ### --- Userspace ---
-    # Install dotfiles first so CI can detect drift
-    - name: User dotfiles
-      ansible.builtin.import_tasks: tasks/user_dotfiles.yml
-      tags: [user, dotfiles]
     - name: User UI
       ansible.builtin.import_tasks: tasks/user_ui.yml
       tags: [user, ui]
