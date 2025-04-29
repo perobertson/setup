@@ -224,7 +224,9 @@ test:ubuntu:24.04:
 deploy:github:
   stage: deploy
   interruptible: false
+  image: registry.fedoraproject.org/fedora:latest
   script:
+    - dnf install -y git-core openssh-clients
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - echo "${GITHUB_KEY}" > ~/.ssh/id_rsa
