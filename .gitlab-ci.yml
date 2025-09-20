@@ -25,7 +25,7 @@ workflow:
   stage: build
   image:
     # debug image has a shell
-    name: gcr.io/kaniko-project/executor:v1.21.1-debug
+    name: gcr.io/kaniko-project/executor:v1.24.0-debug
     entrypoint: [""]
   needs:
     - job: lint:shellcheck
